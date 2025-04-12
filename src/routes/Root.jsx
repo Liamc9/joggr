@@ -1,6 +1,13 @@
 // src/routes/Root.js
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { IoSearch    } from "react-icons/io5";
+import { FaUsers, FaRegUser, FaRunning  } from "react-icons/fa";
+import { AiOutlineUser } from "react-icons/ai";
+import { PiSneakerMoveBold } from "react-icons/pi";
+import { GrGroup } from "react-icons/gr";
+
+
 import {
   HomeIcon3,
   SearchIcon2,
@@ -41,6 +48,8 @@ export default function Root() {
     "/account/helpandfaqs/faqs",
     "/account/helpandfaqs/contactus",
     "/profile/:id",
+    "/conversation/:id",
+    "/pals"
   ];
 
   // Paths where BottomNavBar should be hidden
@@ -67,20 +76,26 @@ export default function Root() {
   const bottomNavItems = [
     
     {
-      text: "Home",
-      icon: HomeIcon3,
-      path: "/home",
-      hasNotification: notifications.home,
+      text: "Explore",
+      icon: IoSearch,
+      path: "/explore",
+      hasNotification: notifications.explore,
     },
     {
-      text: "Search",
-      icon: SearchIcon2,
-      path: "/search",
-      hasNotification: notifications.search,
+      text: "Runs",
+      icon: PiSneakerMoveBold,
+      path: "/runs",
+      hasNotification: notifications.runs,
+    },
+    {
+      text: "Pals",
+      icon: GrGroup,
+      path: "/pals",
+      hasNotification: notifications.pals,
     },
     {
       text: "Account",
-      icon: UserIcon3,
+      icon: FaRegUser,
       path: currentUser ? `/account/${currentUser.uid}` : "/login", // Dynamic user ID path or login fallback
       hasNotification: notifications.account,
     },
@@ -94,12 +109,13 @@ export default function Root() {
           {/* Mobile Top Navbar */}
           <div>
             <TopWSideNav
-              appName="MyApp"
+              appName="Joggr"
               signInColor="var(--color-primary)"
               navLinks={[
-                { name: "Home", path: "/home", Icon: HomeIcon3 },
-                { name: "Search", path: "/search", Icon: SearchIcon2 },
-                { name: "Account", path: currentUser ? `/account/${currentUser.uid}` : "/login", Icon: UserIcon3 },
+                { name: "Explore", path: "/explore", Icon: IoSearch },
+                { name: "Runs", path: "/runs", Icon: PiSneakerMoveBold },
+                { name: "Pals", path: "/pals", Icon: GrGroup },
+                { name: "Account", path: currentUser ? `/account/${currentUser.uid}` : "/login", Icon: FaRegUser },
               ]}
               username={currentUser?.displayName || "Guest"}
               profilePic={

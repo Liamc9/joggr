@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { Input } from "liamc9npm"; // Ensure this is a reusable Input component
-import { GoogleIcon } from "liamc9npm"; // Make icon paths configurable or abstract
+import { GoogleIcon, Joggricon } from "liamc9npm"; // Make icon paths configurable or abstract
 import "react-toastify/dist/ReactToastify.css";
 
 const LoginView = ({
@@ -12,10 +12,10 @@ const LoginView = ({
   handleLogin,         // Function to handle login (passed from Login component)
   onForgotPassword,    // Function to handle forgot password (passed from Login component)
   onGoogleSignIn,      // Function to handle Google sign-in (passed from Login component)
-  themeColor = "#A855F7",
+  themeColor = "#00e48b",
   branding = {
-    appName: "YourApp",
-    primaryIcon: null, // Allow passing a custom primary icon
+    appName: "Joggr",
+    primaryIcon: <Joggricon/>, // Allow passing a custom primary icon
   },
 }) => {
   const { appName, primaryIcon } = branding;
@@ -97,9 +97,9 @@ const LoginView = ({
       ) : (
         <>
           {primaryIcon && (
-            <IconWrapper>
+            <AppIconWrapper>
               {React.cloneElement(primaryIcon, { themeColor })}
-            </IconWrapper>
+            </AppIconWrapper>
           )}
           <Title>{isSignUp ? `Sign up to ${appName} to get started!` : `Sign in to ${appName}`}</Title>
           {resetEmailSent && <Message>A password reset email has been sent to {email}.</Message>}
@@ -388,5 +388,19 @@ const IconWrapper = styled.span`
   svg {
     width: 20px;
     height: 20px;
+  }
+`;
+
+const AppIconWrapper = styled.span`
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  color: #00e48b;
+  svg {
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
   }
 `;

@@ -11,7 +11,7 @@ import { NotificationProvider } from "./context/NotificationContext";
 import { AuthProvider, useAuth } from "./context/AuthContext"; // Import useAuth
 import Root from "./routes/Root";
 import Login from "./routes/Login";
-import Home from "./routes/Home";
+import Explore from "./routes/Explore";
 import Search from "./routes/Search";
 import Account from "./routes/Account";
 import ManageAccount from "./routes/ManageAccount";
@@ -23,6 +23,11 @@ import FAQ from "./routes/FAQ";
 import ContactUs from "./routes/ContactUs";
 import HelpAndFAQs from "./routes/HelpAndFAQs";
 import PrivacyAndSecurity from "./routes/PrivacyAndSecurity";
+import Pals from "./routes/Pals";
+import Runs from "./routes/Runs";
+import PlansAndBilling from "./routes/PlansAndBilling";
+import Conversation from "./routes/Conversation";
+import Messages from "./routes/Messages";
 
 // Helper component for route protection
 const RequireAuth = ({ children }) => {
@@ -43,10 +48,12 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="/home" replace />,
+        element: <Navigate to="/explore" replace />,
       },
       { path: "login", element: <Login /> },
-      { path: "home", element: <Home /> },
+      { path: "explore", element: <Explore /> },
+      { path: "pals", element: <Pals /> },
+      { path: "runs", element: <Runs /> },
       { path: "search", element: <Search /> },
       {
         path: "account/:userId",
@@ -104,7 +111,31 @@ const router = createBrowserRouter([
             <PrivacyAndSecurity />
           </RequireAuth>
         ),
-      }
+      },
+      {
+        path: "account/plansandbilling/:userId",
+        element: (
+          <RequireAuth>
+            <PlansAndBilling />
+          </RequireAuth>
+        ),
+      },
+      {
+      path: "conversation/:conversationId",
+      element: (
+        <RequireAuth>
+          <Conversation />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: "messages",
+      element: (
+        <RequireAuth>
+          <Messages />
+        </RequireAuth>
+      ),
+    }
     ],
   },
 ]);

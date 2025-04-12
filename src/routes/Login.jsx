@@ -87,8 +87,8 @@ const Login = ({
         handleLogin={handleLogin}
         onForgotPassword={handleForgotPassword}
         onGoogleSignIn={handleGoogleSignIn}
-        themeColor={themeColor || "#A855F7"}
-        branding={branding || { appName: "YourApp", primaryIcon: null }}
+        themeColor={themeColor}
+        branding={branding}
       />
     </div>
   );

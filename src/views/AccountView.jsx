@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StackedList } from 'liamc9npm';
 import { Link } from "react-router-dom"; // Import Link for profile navigation
-import { ChevronRightIcon } from 'liamc9npm';
+import { FaChevronRight } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom";
 
 // Styled Components
@@ -34,13 +34,16 @@ const ProfileSection = styled(Link)`
 `;
 
 const ProfileImage = styled.div`
-  width: 80px; /* Increased size */
-  height: 80px; /* Increased size */
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background-image: url(${(props) => props.image || "https://via.placeholder.com/80"});
+  background-image: url("${(props) =>
+    props.image && props.image.trim() !== "" 
+      ? props.image 
+      : "https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg"}");
   background-size: cover;
   background-position: center;
-  margin-right: 24px; /* Increased margin */
+  margin-right: 24px;
 `;
 
 const ProfileInfo = styled.div`
@@ -160,7 +163,7 @@ const AccountView = ({ settings, logout, currentUser, userData }) => {
             <ViewProfile>View Profile</ViewProfile>
           </ProfileInfo>
           <IconWrapper>
-            <ChevronRightIcon />
+            <FaChevronRight />
           </IconWrapper>
         </ProfileSection>
       )}
@@ -175,7 +178,7 @@ const AccountView = ({ settings, logout, currentUser, userData }) => {
 
       {/* Footer */}
       <Footer>
-        <div>Company Name</div>
+        <div>Joggr</div>
         <div>Version 1.0.0</div>
         <FooterLinks>
           <a href="/terms">Terms</a>
