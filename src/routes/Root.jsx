@@ -103,30 +103,7 @@ export default function Root() {
 
   return (
     <div id="root" className="w-full overflow-x-hidden bg-white">
-      {/* Top Navigation Bar */}
-      {!shouldHideTopNav() && (
-        <>
-          {/* Mobile Top Navbar */}
-          <div>
-            <TopWSideNav
-              appName="Joggr"
-              signInColor="var(--color-primary)"
-              navLinks={[
-                { name: "Explore", path: "/explore", Icon: IoSearch },
-                { name: "Runs", path: "/runs", Icon: PiSneakerMoveBold },
-                { name: "Pals", path: "/pals", Icon: GrGroup },
-                { name: "Account", path: currentUser ? `/account/${currentUser.uid}` : "/login", Icon: FaRegUser },
-              ]}
-              username={currentUser?.displayName || "Guest"}
-              profilePic={
-                currentUser?.photoURL || "https://via.placeholder.com/50"
-              }
-              onLogout={handleLogout} // Pass the Firebase logout function
-            />
-          </div>
-          
-        </>
-      )}
+  
 
       {/* Bottom Navigation Bar */}
       {!shouldHideBottomNav() && (

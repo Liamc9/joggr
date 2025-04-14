@@ -28,6 +28,7 @@ import Runs from "./routes/Runs";
 import PlansAndBilling from "./routes/PlansAndBilling";
 import Conversation from "./routes/Conversation";
 import Messages from "./routes/Messages";
+import PostRun from "./components/PostRunForm";
 
 // Helper component for route protection
 const RequireAuth = ({ children }) => {
@@ -133,6 +134,14 @@ const router = createBrowserRouter([
       element: (
         <RequireAuth>
           <Messages />
+        </RequireAuth>
+      ),
+    },
+    {
+      path: "postrun",
+      element: (
+        <RequireAuth>
+          <PostRun />
         </RequireAuth>
       ),
     }
