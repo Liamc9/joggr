@@ -1,50 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import SearchView from '../views/SearchView';
 
 const sampleItems = [
-  { title: 'Task 1', description: 'Do this', status: 'completed', priority: 'high', date: '2023-08-20' },
-  { title: 'Task 2', description: 'Do that', status: 'pending', priority: 'medium', date: '2023-08-22' },
-  { title: 'Task 3', description: 'Another task', status: 'completed', priority: 'low', date: '2023-08-21' },
-  { title: 'Task 4', description: 'Yet another task', status: 'inProgress', priority: 'medium', date: '2023-08-23' },
-  { title: 'Task 5', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 6', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 7', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 8', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 9', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 10', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 11', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 12', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 13', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 14', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 15', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 16', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 17', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 18', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 19', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 20', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 21', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 22', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 23', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 24', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 25', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 26', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 27', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 28', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 29', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 30', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 31', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 32', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 33', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 34', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 35', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 36', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 37', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 38', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 39', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 40', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 41', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 42', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
-  { title: 'Task 43', description: 'Final task', status: 'completed', priority: 'high', date: '2023-08-24' },
+  { name: 'Liam', distance: '5 km', location: 'New York', date: '2023-08-20', pace: '5:00 min/km', description: 'A great run!', image: 'https://t4.ftcdn.net/jpg/06/08/55/73/360_F_608557356_ELcD2pwQO9pduTRL30umabzgJoQn5fnd.jpg', userId: 1, time: '14:30' },
+  { name: 'Emma', distance: '10 km', location: 'Los Angeles', date: '2023-08-21', pace: '4:30 min/km', description: 'Feeling good!', image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg', userId: 2, time: '13:45' },
+  { name: 'Noah', distance: '15 km', location: 'Chicago', date: '2023-08-22', pace: '4:45 min/km', description: 'Challenging run!', image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg', userId: 3, time: '12:30' },
+  { name: 'Olivia', distance: '20 km', location: 'Houston', date: '2023-08-23', pace: '5:15 min/km', description: 'Great weather!', image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg', userId: 4, time: '15:00' },
+  { name: 'Liam', distance: '5 km', location: 'New York', date: '2023-08-20', pace: '5:00 min/km', description: 'A great run!', image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg', userId: 1, time: '14:30' },
+  { name: 'Emma', distance: '10 km', location: 'Los Angeles', date: '2023-08-21', pace: '4:30 min/km', description: 'Feeling good!', image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg', userId: 2, time: '13:45' },
+  { name: 'Noah', distance: '15 km', location: 'Chicago', date: '2023-08-22', pace: '4:45 min/km', description: 'Challenging run!', image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg', userId: 3, time: '12:30' },
+  { name: 'Olivia', distance: '20 km', location: 'Houston', date: '2023-08-23', pace: '5:15 min/km', description: 'Great weather!', image: 'https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg', userId: 4, time: '15:00' },
+ 
 ];
 
 const Search = () => {
@@ -58,6 +24,13 @@ const Search = () => {
     setSelectedFilters({});           // Reset filters
     setSortedItems(newSearchResults); // Reset sorting base to the new search results
   };
+
+  useEffect(() => {
+    const sortedByTime = [...searchedItems].sort((a, b) =>
+      a.time.localeCompare(b.time)
+    );
+    setSortedItems(sortedByTime);
+  }, [searchedItems]);
 
   return (
     <SearchView

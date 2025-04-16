@@ -2,9 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BottomDrawer, FilterLogic, RangeSlider, SelectInput } from 'liamc9npm';
-
-import { FilterIcon } from 'liamc9npm';
-
+import { FaCalendarAlt, FaRegCalendarAlt } from 'react-icons/fa';
 // Styled components for button and filter layout
 const Button = styled.button`
   display: flex;
@@ -20,6 +18,7 @@ const Button = styled.button`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   .svg {
+  color: #777;
     margin-right: 0.5rem;
     width: 24px;
     height: 24px;
@@ -75,7 +74,7 @@ const FilterDrawer = ({ onChange }) => {
 
   return (
     <>
-      <Button onClick={handleOpenDrawer}><FilterIcon className='svg'/> Filters</Button>
+      <Button onClick={handleOpenDrawer}><FaRegCalendarAlt className='svg'/> Today</Button>
       <BottomDrawer isOpen={isOpen} onClose={handleCloseDrawer}>
         <FilterLogic
           filters={Object.values(filtersConfig)}

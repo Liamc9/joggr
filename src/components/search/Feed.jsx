@@ -1,25 +1,30 @@
-// src/components/search/Feed.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FeedItem, FeedLogic, PaginationControls, LoadMoreButton } from 'liamc9npm';
+import {
+  FeedItem,
+  FeedLogic,
+  PaginationControls,
+  LoadMoreButton,
+} from 'liamc9npm';
 
 // Styled component for the feed container
 const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 16px;
 `;
 
+// Component
 const Feed = ({
   items = [],
   sortBy,
   selectedFilters = {},
   ItemComponent = FeedItem,
-  pagination,         // Optional: number of items per page
-  loadMore,           // Optional: number of items to load per click
-  infiniteScroll,     // Optional: number of items to load on bottom scroll
-  scrollContainerRef  // Optional: container ref for infinite scrolling
+  pagination,
+  loadMore,
+  infiniteScroll,
+  scrollContainerRef,
 }) => {
-  // Retrieve computed values and logic from FeedLogic
   const {
     itemsToRender,
     pages,
@@ -37,24 +42,31 @@ const Feed = ({
     scrollContainerRef,
   });
 
+
   return (
-    <FeedContainer>
-      {itemsToRender.map((item, index) => (
-        <ItemComponent key={index} data={item} />
-      ))}
+    <>
+      <FeedContainer>
+        {itemsToRender.map((item, index) => (
+          <ItemComponent key={index} data={item}  />
+        ))}
 
-      <PaginationControls
-        pages={pages}
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
-      />
+        {pages?.length > 1 && (
+          <PaginationControls
+            pages={pages}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
+        )}
 
-      <LoadMoreButton
-        loadMore={loadMore}
-        hasMoreItems={hasMoreItems}
-        onLoadMore={handleLoadMore}
-      />
-    </FeedContainer>
+        {loadMore && (
+          <LoadMoreButton
+            hasMoreItems={hasMoreItems}
+            onLoadMore={handleLoadMore}
+          />
+        )}
+      </FeedContainer>
+
+    </>
   );
 };
 
