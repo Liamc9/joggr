@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Joggr
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Joggr is a single-page web application built with Create React App (React 19) that helps runners explore nearby runs, keep up with pals, manage personal settings, and handle payments or subscriptions.
+
+## Key Technologies
+- React with React Router for routing and navigation.
+- Tailwind CSS and styled-components for styling.
+- Firebase (Auth, Firestore, Storage, Analytics) for backend services.
+- Stripe for payments via a Firebase Cloud Function.
+- A custom UI/utilities library `liamc9npm` for reusable components and helpers.
+
+## Application Structure
+### `src/`
+- `firebase-config.js` initializes Firebase services (auth, db, storage, functions).
+- Contexts like `AuthContext.js` and `NotificationContext.js` wrap authentication logic and user notification flags.
+- Components such as `RunCard.jsx` and folders like `search/` or `stripe/` provide UI for run info, search, and payments.
+- Routes under `src/routes/` include pages like `Explore`, `Search`, `Runs`, `Pals`, `Account`, `Profile`, and more, with protected routes handled by a `RequireAuth` wrapper in `index.js`.
+- Views (e.g., `AccountView.jsx`, `ProfileView.jsx`, `SearchView.jsx`) supply presentational components for the routes.
+
+### `functions/`
+- `index.js` exposes an Express endpoint `createPaymentIntentWithCustomer` to manage Stripe customers and PaymentIntents.
+
+### `public/`
+- Static assets such as the HTML template and icons.
+
+## Notable Features
+- **Authentication & User Profile**: email/password, Google, or Apple OAuth with profile editing and account deletion.
+- **Notifications**: Firestore-backed notification flags displayed in navigation.
+- **Search & Explore**: browse runs by distance, apply filters, and view a map in a bottom sheet.
+- **Account Settings**: modular settings pages using `liamc9npm` templates.
+- **Payments**: Stripe Elements UI with PaymentIntents fetched from the Firebase function.
 
 ## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `npm start` – run the app in development mode.
+- `npm run build` – build the app for production.
+- `npm test` – launch the test runner (no tests currently included).
