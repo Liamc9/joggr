@@ -21,7 +21,7 @@ Joggr is a single-page web application built with Create React App (React 19) th
 - `index.js` exposes an Express endpoint `createPaymentIntentWithCustomer` to manage Stripe customers and PaymentIntents.
 
 ### `public/`
-- Static assets such as the HTML template and icons.
+- Static assets such as the HTML template and icons. 
 
 ## Notable Features
 - **Authentication & User Profile**: email/password, Google, or Apple OAuth with profile editing and account deletion.
