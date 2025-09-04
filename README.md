@@ -25,7 +25,7 @@ Joggr is a single-page web application built with Create React App (React 19) th
 
 ## Notable Features
 - **Authentication & User Profile**: email/password, Google, or Apple OAuth with profile editing and account deletion.
-- **Notifications**: Firestore-backed notification flags displayed in navigation.
+- **Notifications**: Firestore-backed notification flags displayed in navigation. 
 - **Search & Explore**: browse runs by distance, apply filters, and view a map in a bottom sheet.
 - **Account Settings**: modular settings pages using `liamc9npm` templates.
 - **Payments**: Stripe Elements UI with PaymentIntents fetched from the Firebase function.
